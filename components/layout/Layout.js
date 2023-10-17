@@ -3,11 +3,33 @@ import { BsEmojiSunglasses } from "react-icons/bs";
 import { VscListSelection } from "react-icons/vsc";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { RxDashboard } from "react-icons/rx";
+import { signOut, useSession } from "next-auth/react";
+import { FiLogOut } from "react-icons/fi";
 function Layout({ children }) {
+  const { status } = useSession();
+  const logOutHandler = () => {
+    signOut();
+  };
   return (
     <div className="container">
       <header>
         <p>Project Todo App</p>
+        {status === "authenticated" ? (
+          <button onClick={logOutHandler}>
+            Logout
+            <FiLogOut />
+          </button>
+        ) : (
+          <ul>
+            <li>
+              <Link href={"/signup"}>SignUp</Link>
+            </li>
+
+            <li>
+              <Link href={"/signin"}>SignIn</Link>
+            </li>
+          </ul>
+        )}
       </header>
       <div className="container--main">
         <aside>

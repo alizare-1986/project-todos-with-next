@@ -15,6 +15,7 @@ const userSchema = new Schema({
   lastName: {
     type: String,
   },
+  phone:Number,
   todos: [{ title: String, status: String }],
   phone: Number,
   createdAt: {
